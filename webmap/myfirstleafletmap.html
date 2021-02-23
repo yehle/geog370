@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Map</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+
+   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+
+   <script src = "./data/old_well_4326.geojson"></script>
+   <script src = "./data/carolina_hall.geojson"></script>
+   <script src = "./data/wilson.geojson"></script>
+   <script src = "./data/oldeast.geojson"></script>
+
+</head>
+<body>
+
+    <div id="mapid"></div>
+    <style>
+        #mapid{ width: 900px; height: 500px;}
+    </style>
+
+    <script>
+        // adding map
+        var map = L.map('mapid').setView([35.91, -79.05], 17);
+        L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {}).addTo(map)
+    
+        // markers
+        var myIcon = L.icon({
+        iconUrl: 'https://www.flaticon.com/svg/vstatic/svg/1483/1483336.svg?token=exp=1614094972~hmac=e41e3732e5d9e99111da62d14c16fdab',
+        iconSize: [38, 95],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+        shadowUrl: 'my-icon-shadow.png',
+        shadowSize: [68, 95],
+        shadowAnchor: [22, 94]
+        });
+        
+        L.marker([35.911271, -79.049807]).addTo(map)
+            .bindPopup("Carolina Hall")
+            .openPopup();
+
+        L.marker([35.912064676772367, -79.0512352278691]).addTo(map)
+            .bindPopup("Old Well")
+            .openPopup();
+        
+        L.marker([35.9097, -79.04974]).addTo(map)
+            .bindPopup("Wilson Library")
+            .openPopup();
+
+        L.marker([35.9125, -79.05083]).addTo(map)
+            .bindPopup("Old East")
+            .openPopup();
+
+        
+        // adding geoJSONs
+        L.geoJSON(uncwell).addTo(map)
+        L.geoJSON(carolinaHall).addTo(map)
+        L.geoJSON(wilsonLibrary).addTo(map)
+        L.geoJSON(oldeast).addTo(map)
+
+        // icons
+        var carolinaIcon = L.icon({ 
+        iconUrl: 'https://alumni.unc.edu/wp-content/uploads/2016/11/025416_carolina_hall_exhibit007-1.jpg',
+        iconSize: [50,50], // size of the icon
+        popupAnchor: [0,0] // where the icon is located relative to the lat lon of the point.
+        });
+
+        var wilsonIcon = L.icon({ 
+        iconUrl: 'https://ccinfo.unc.edu/wp-content/uploads/sites/219/2018/01/open-book.png',
+        iconSize: [50,50], // size of the icon
+        popupAnchor: [0,0] // where the icon is located relative to the lat lon of the point.
+        });
+
+        var eastIcon = L.icon({ 
+        iconUrl: 'https://fastly.4sqi.net/img/general/600x600/T4YKPECXG22YYG5PQNFE0SY2WZAR2OSIWTRP4O4EJIRAGKAE.jpg',
+        iconSize: [50,50], // size of the icon
+        popupAnchor: [0,0] // where the icon is located relative to the lat lon of the point.
+        });
+
+        // popups
+        var customPopup1 = "Old Well - 1897<br/><img src='https://global.unc.edu/files/2020/02/spring_4_09__12_054-768x511.jpg'width='100px'/>";
+        var customPopup2 = "Carolina Hall - 1922, renamed 2015<br/><img src='https://chapelboro.com/wp-content/uploads/2015/03/Saunders_Hall_at_UNC.jpg'width='100px'/>";
+        var customPopup3 = "Louis Round Wilson Library - 1929<br/><img src='https://live.staticflickr.com/4099/4916957895_5a5808cd02_b.jpg'width='100px'/>";
+        var customPopup4 = "Old East - 1793. Oldest building on campus<br/><img src='https://ncarchitects.lib.ncsu.edu/images/building/B000300.jpg'width='100px'/>";
+
+        // adding it all together
+        L.geoJSON(uncwell, { // a
+        pointToLayer: function (feature, latlng) { // b
+        return L.marker(latlng, {icon: uncIcon});}}) // c
+        .bindPopup(customPopup1) // d
+        .addTo(map); //
+
+        L.geoJSON(carolinaHall, {
+        pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, {icon: carolinaIcon});}}) 
+        .bindPopup(customPopup2) 
+        .addTo(map); 
+
+        L.geoJSON(wilsonLibrary, { 
+        pointToLayer: function (feature, latlng) { 
+        return L.marker(latlng, {icon: wilsonIcon});}}) 
+        .bindPopup(customPopup3) 
+        .addTo(map); 
+
+        L.geoJSON(oldeast, { 
+        pointToLayer: function (feature, latlng) { 
+        return L.marker(latlng, {icon: eastIcon});}}) 
+        .bindPopup(customPopup4) 
+        .addTo(map); 
+
+
+
+    </script>
+
+    
+</body>
+</html>
