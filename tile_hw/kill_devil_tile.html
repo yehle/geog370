@@ -27,12 +27,64 @@
   <div id="map"></div>
   <script>
       var map = L.map('map').setView([36.026375423, -75.675497807], 14.0);
-      L.tileLayer('./tiles/{z}/{x}/{y}.png', {
+      
+      var memorialIcon = L.icon({
+        iconUrl: 'https://www.wright-brothers.org/General/About_the_Museum/About_the_Museum_images/Santa_in_1902_Glider.jpg',
+        iconSize:     [50, 50], // size of the icon
+        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+      });
+
+      var customPopup1 = "Wilbur and Orville Wright had the first successful airplane flight on December 17, 1903. Learn more at the Visitor Center.<br/><img src='https://npplan.com/wp-content/uploads/2017/11/Wright-Bros-03.jpg'width='100px'/>";
+
+      var daMarker1 = L.marker([36.01912282324158, -75.66610648041082],{icon: memorialIcon}).addTo(map);
+      daMarker1.bindPopup(customPopup1)
+
+      var beachIcon = L.icon({
+        iconUrl: 'https://www.outerbanks.com/images/outerbanks/kdh9.jpg',
+        iconSize:     [50, 50], // size of the icon
+        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+      });
+
+      var customPopup2 = "This is a spot where the public can access the Kill Devil Hills beach<br/><img src='https://img.travelawaits.com/filter:scale/quill/c/4/a/c/7/0/c4ac70c9460a0dfe771b38db0af7b68f959024ab.jpg?mw=800'width='100px'/>";
+
+      var daMarker2 = L.marker([36.015535329430634, -75.65733699459132],{icon: beachIcon}).addTo(map);
+      daMarker2.bindPopup(customPopup2)
+
+      var peakIcon = L.icon({
+        iconUrl: 'https://www.pilotonline.com/resizer/GxW17_btKI4G-L7ImqahdAPU3ic=/1200x0/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/MEEJPNYCHRH7BOINTSMF3NPSGE.jpg',
+        iconSize:     [50, 50], // size of the icon
+        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+      });
+
+      var customPopup3 = "The highest point of Kill Devil Hills is only 90 ft above sealevel. As a comparison, the highest point of Chapel Hill is 486 ft.<br/><img src='https://obxguides.com/sites/default/files/page/6441/kill-devil-hills-activites.jpg'width='100px'/>";
+      var daMarker3 = L.marker([36.01443448247598, -75.66820629720488],{icon: peakIcon}).addTo(map);
+      daMarker3.bindPopup(customPopup3)
+
+
+      var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	    maxZoom: 19,
+	    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+      
+      var daPhoto = L.tileLayer('./tiles/{z}/{x}/{y}.png', {
         minZoom: 12,
         maxZoom: 16,
         tms: false,
         attribution: 'USGS'
-      }).addTo(map);
+      });
+
+      var daTiles = {
+        "Open Street Map": OSM,
+        "Kill Devil Hills Photo": daPhoto
+      }
+      var daVectors = {
+        "Wright Brothers National Memorial Vistor Center": daMarker1,
+        "Public Beach Access": daMarker2,
+        "Peak of Kill Devil Hill": daMarker3
+      }
+
+      L.control.layers(daVectors, daTiles).addTo(map);
+
   </script>
 </body>
 </html>
