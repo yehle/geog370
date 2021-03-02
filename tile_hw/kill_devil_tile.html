@@ -56,7 +56,7 @@
         popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
       });
 
-      var customPopup3 = "The highest point of Kill Devil Hills is only 90 ft above sealevel. As a comparison, the highest point of Chapel Hill is 486 ft.<br/><img src='https://obxguides.com/sites/default/files/page/6441/kill-devil-hills-activites.jpg'width='200px'/>";
+      var customPopup3 = "The highest point of Kill Devil Hills is only 90 ft above sealevel. As a comparison, the highest point of Chapel Hill is 486 ft. Earliest data I could find put Kill Devil Hill peak at 91 ft in 2003, so we can see that sea level rise is slowly submerging the island.<br/><img src='https://obxguides.com/sites/default/files/page/6441/kill-devil-hills-activites.jpg'width='200px'/>";
       var daMarker3 = L.marker([36.01443448247598, -75.66820629720488],{icon: peakIcon}).addTo(map);
       daMarker3.bindPopup(customPopup3)
 
@@ -79,9 +79,9 @@
       }
 
       var daVectors = {
-        "Wright Brothers National Memorial Vistor Center": daMarker1,
+       "Wright Brothers National Memorial Vistor Center": daMarker1,
        "Public Beach Access": daMarker2,
-        "Peak of Kill Devil Hill": daMarker3
+       "Peak of Kill Devil Hill": daMarker3
       }
 
       L.control.layers(daVectors, daTiles).addTo(map);
