@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 9</title>
+</head>
+<body>
+    <h1>Homework 10: Geoprocessing Analysis by Natalie Yehle</h1>
+    
+    <p>Eastern Hellbenders are only one of three giant salamanders in the world. 
+        They are listed on North Carolina's endangered species list as a species of special concern.
+        Hellbenders are found in fast-moving, clean streams in western North Carolina and their population has declined due to habitat loss and illegal killings.
+        They aren't the most attractive (see picture) and at over a foot long they can look quite scary, but they are not harmful, poisonous, venomous, or toxic.
+    </p>
+
+    <p>I had the question: where exactly in NC can we expect to find hellbenders?
+        To answer this, I found a CSV file of all giant salamander sightings in the world.
+        Then, I used the intersect geoprocessing tool to restrict the sightings to those just in NC.
+        There are no other giant salamanders found in North Carolina, so the intersected points are only hellbender sightings.
+        Next, I created a convex hull that encompassed all of the hellbender sightings in NC in order to see what their range is.
+        I also included major river and stream systems in NC to see what bodies of water hellbenders can be/ have been found
+
+    </p>
+    
+    <h2>Photo of a hellbender</h2>
+    <a href=".//hellbender_image.jpg">
+    <img src=".//hellbender_image.jpg" alt="hellbee" width='500px'>
+    </a>
+    <p></p>
+    <a href="https://www.athensnews.com/news/local/snot-otter-or-hellbender-ou-scientists-want-to-save-them/article_4e607476-e064-11e8-a4c1-036d580808ea.html"> Image Source</a>
+        <p></p>
+
+    <h2>Map of Hellbender Range in NC</h2>
+    <a href=".//hellbender_map.png">
+    <img src=".//hellbender_map.png" alt="6543" width='800px'>
+    </a>
+
+    <h2>Data used for this project</h2>
+        <a href="https://www.gbif.org/species/6747"> Data Source - Global Giant Salamander Sightings</a>
+        <p></p>
+        <a href="./nc_rivers_6543.geojson"> NC Major Streams and Rivers geojson</a>
+        <p></p>
+        <a href="./hellbender_sights_nc.csv"> Hellbender sightings in NC (Cleaned CSV)</a>
+        <p></p>
+        <a href="./nc_6543.geojson"> NC geojson </a>
+     
+
+</body>
+</html>
